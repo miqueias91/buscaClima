@@ -2,9 +2,6 @@ $('#myModal').dialog({
     resizable: false,
     modal: true,
     buttons: {
-        "Cancelar": function() {
-            $( this ).dialog( "close" );
-        },
         "Buscar": function() {             
             if ($('#localidadeEstado').val() == '') {
                 alert('Atenção! Selecione um estado.');
@@ -25,8 +22,25 @@ $('#myModal').dialog({
                         'estado': $('#estado').val(),
                         'municipio': $('#municipio').val(),
                     },
-                    success: function(a) {
-                        console.log(a)
+                    success: function(valorRetornado) {
+                        console.log(valorRetornado);
+                        var obj = JSON.parse(valorRetornado);
+                        if (obj) {
+                            $('#resultadoTempo h2 span').html(obj['name']+' - '+obj['state']+', '+obj['country']);
+                            $('.dadosTemperatura h1').html(obj['data']['temperature']+'ºC');
+                            $('.dadosTemperatura h2').html(obj['data']['condition']);
+                            $('.dadosTemperatura h4 .direcao').html(obj['data']['wind_direction']);
+                            $('.dadosTemperatura h4 .vento').html(obj['data']['wind_velocity']);
+                            $('.dadosTemperatura h4 .umidade').html(obj['data']['humidity']);
+                            $('.dadosTemperatura h4 .pressao').html(obj['data']['pressure']);
+                            $('.dadosTemperatura h4 .sensacao').html(obj['data']['sensation']);
+
+                            var date = new Date(obj['data']['date']);
+                            $('#resultadoTempo h3 .data').html(date);
+
+                            $('#myModal').dialog('close');
+                            $('#resultadoTempo').css('display', '');                            
+                        }
                     },
                 });
                 return true;

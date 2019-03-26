@@ -1,6 +1,4 @@
 <?php
-	echo "<pre>";
-
 	//FUNCAO CURL PARA CONEXA REMOTA, USADA PARA CONECTAR AO WEBSERVICE
 	function CURL($url){
 		$ch   	= 	curl_init();
@@ -12,6 +10,10 @@
 
 	$name = $_POST['municipio'];
 	$state = $_POST['estado'];
+
+	$name = str_replace('_', '%20', $name);
+
+	//print_r($name);
 
 
 	$token = 'db0b630c9cfd789d97c89c45e8e52068';
@@ -38,7 +40,6 @@
 
 
 	$result1 = CURL($url3);
-	$resultado = json_decode($result1);
+	$resultado = $result1;
 
-	echo "<pre>";
-	print_r($resultado);
+	echo $resultado;

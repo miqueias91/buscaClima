@@ -40,12 +40,11 @@
   </head>
   <body>
   	<form action='./' method='post' name='form' id='form' enctype='multipart/form-data'>
-
-		<div title="Buscar localidade" id='myModal' class="modal" tabindex="-1" role="dialog">
+		<div title="Buscar localidade" id='myModal' class="modal" tabindex="-1">
 			<p><i class="fas fa-thumbtack"></i>&nbsp;Você deseja ver o clima em qual lugar?</p>
 			<div class="form-group">
-				<input type="text" id="estado" name="estado" value="">
-				<input type="text" id="municipio" name="municipio" value="">
+				<input type="hidden" id="estado" name="estado" value="">
+				<input type="hidden" id="municipio" name="municipio" value="">
 			    
 			    <select class="form-control" id="localidadeEstado" name="localidadeEstado">
 			      <option value="">Estado</option>
@@ -66,6 +65,34 @@
 			    </select>
 			</div>	  
 		</div>
+
+		<div class="container">
+			<div id="resultadoTempo" class="main" style="display: none;">
+				<h2><i class="fas fa-location-arrow"></i>&nbsp;<span>XXXXXXX - XX, XX</span></h2>	
+				<br>
+				<div class="dadosTemperatura">
+					<h1>00ºC</h1>
+					<h2>XXXXXXXXX</h2>
+					<h4>Direção do vento:&nbsp;<span class="direcao">XXX</span></h4>
+		            <h4>Vento:&nbsp;<span class="vento">00</span>km/h</h4>
+		            <h4>Umidade:&nbsp;<span class="umidade">00</span>%</h4>
+		            <h4>Pressão:&nbsp;<span class="pressao">00</span>&nbsp;hPa</h4>
+		            <h4>Sensação:&nbsp;<span class="sensacao">00</span>&nbsp;ºC</h4>				
+				</div>
+				<br>
+				<h3>Verificado em: <span class="data"></span></h3>	
+				<h3>Fonte: Climatempo</h3>	
+			</div>			
+		</div>
+
+
+
+
+
+
+
+
+
 	</form>
 
     <!-- Optional JavaScript -->

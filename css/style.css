@@ -3,4 +3,45 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
     font-size: 15px;
+    margin: 0px
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    display: none!important;
+}
+#resultadoTempo {
+	display: block;
+    background: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+.dadosTemperatura {
+	display: inline;
+}
+.dadosTemperatura h1 {
+	float: right;
+	font-weight: 700;
+	font-size: 80px;
+}
+#resultadoTempo h2, .dadosTemperatura h2 {
+	color: #535459;
+}
+.dadosTemperatura h4{
+	font-weight: 300;
+	font-size: 15px;
+	color: #878787;
+}
+#resultadoTempo h3{
+	font-weight: 300;
+	font-size: 10px;
+	color: #535459;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
 }

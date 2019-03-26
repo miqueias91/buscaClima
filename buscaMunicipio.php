@@ -20,8 +20,8 @@
 
 	if ($resultadoMunicipios) {
 		foreach ($resultadoMunicipios as $key => $row) {
-			$nome = str_replace("'", " ", $row->nome);
-			$nome = str_replace(" ", "_", $nome);
+			$nome = str_replace("'", "%27", $row->nome);
+			$nome = str_replace(" ", "%20", $nome);
 			$option[] = ("<option  localidade=".$nome." value='".$row->id."'>$row->nome</option>");
 		}	
 		echo (implode("", $option));
