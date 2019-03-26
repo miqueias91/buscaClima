@@ -41,7 +41,7 @@
   <body>
   	<form action='./' method='post' name='form' id='form' enctype='multipart/form-data'>
 		<div title="Buscar localidade" id='myModal' class="modal" tabindex="-1">
-			<p><i class="fas fa-thumbtack"></i>&nbsp;Você deseja ver o clima em qual lugar?</p>
+			<p><i class="fas fa-thumbtack"></i>&nbsp;Informe o estado e o município:</p>
 			<div class="form-group">
 				<input type="hidden" id="estado" name="estado" value="">
 				<input type="hidden" id="municipio" name="municipio" value="">
