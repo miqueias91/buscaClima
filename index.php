@@ -84,15 +84,6 @@
 				<h3>Fonte: Climatempo</h3>	
 			</div>			
 		</div>
-
-
-
-
-
-
-
-
-
 	</form>
 
     <!-- Optional JavaScript -->
