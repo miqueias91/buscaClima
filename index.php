@@ -71,6 +71,12 @@
   </head>
   <body>
   	<form action='./' method='post' name='form' id='form' enctype='multipart/form-data'>
+
+		<div title="Aguarde" id='aguarde' class="modal" tabindex="-1">
+			<img width="100" height="70" src="img/carregando.gif">
+			<span>Carregando</span>
+		</div>
+
 		<div title="Buscar localidade" id='myModal' class="modal" tabindex="-1">
 			<p><i class="fas fa-thumbtack"></i>&nbsp;Informe o estado e o município:</p>
 			<div class="form-group">
@@ -112,7 +118,9 @@
 				</div>
 				<br>
 				<h3>Verificado em: <span class="data"></span></h3>	
-				<h3>Fonte: Climatempo</h3>	
+				<h3>Fonte: Climatempo</h3>
+				<br>	
+				<button type="button" class="btn btn-primary" id="novaBusca">Nova Busca</button>
 			</div>			
 		</div>
 	</form>

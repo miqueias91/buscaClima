@@ -1,4 +1,5 @@
 $('#myModal').dialog({
+    draggable: false,
     resizable: false,
     modal: true,
     closeOnEscape: false,
@@ -53,8 +54,8 @@ $('#myModal').dialog({
                 return false;
             }
             else{                    
-                //$("#form").attr('action','.index.php?buscar=sim');
-                //$("#form").submit();
+                $('#aguarde').dialog('open');
+                $('#myModal').dialog('close');
                 $.ajax({
                     url: "buscaClimaMunicipio.php",
                     dataType: 'html',
@@ -79,6 +80,7 @@ $('#myModal').dialog({
                             var date = new Date(obj['data']['date']);
                             $('#resultadoTempo h3 .data').html(date);
 
+                            $('#aguarde').dialog('close');
                             $('#myModal').dialog('close');
                             $('#resultadoTempo').css('display', '');                            
                         }
@@ -93,7 +95,8 @@ $('#myModal').dialog({
 $('#localidadeEstado').change(function(){
     if ($(this).val() != '') {
         $('#estado').val($('option:selected', this).attr('sigla'));
-
+        $('#myModal').dialog('close');
+        $('#aguarde').dialog('open');
         $.ajax({
             url: "buscaMunicipio.php",
             dataType: 'html',
@@ -103,6 +106,8 @@ $('#localidadeEstado').change(function(){
             },
             success: function(a) {
                 $('#localidadeMunicipio').html("<option value=''>Município</option>\n"+a);
+                $('#aguarde').dialog('close');
+                $('#myModal').dialog('open');
             },
         });
     }
@@ -118,4 +123,15 @@ $('#localidadeMunicipio').change(function(){
     else{
         alert('Atenção! Selecione um município.');
     }
+});
+
+$('#novaBusca').click(function(){
+    $('#aguarde').dialog('open');
+    window.location.reload();
+});
+
+$('#aguarde').dialog({
+    autoOpen: false,
+    resizable: false,
+    draggable: false,
 });
