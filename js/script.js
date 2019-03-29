@@ -8,7 +8,6 @@ $('#myModal').dialog({
             if ("geolocation" in navigator){ //check geolocation available 
                 //try to get user current location using getCurrentPosition() method
                 navigator.geolocation.getCurrentPosition(function(position){ 
-                        // console.log("Found your location \nLat : "+position.coords.latitude+" \nLang :"+ position.coords.longitude);
                     $.ajax({
                         url: "https://nominatim.openstreetmap.org/reverse?format=json&lat="+ position.coords.latitude+"&lon="+position.coords.longitude,
                         dataType: 'html',
@@ -105,7 +104,6 @@ function buscaClimaMunicipio (estado, municipio){
             'municipio': municipio,
         },
         success: function(valorRetornado) {
-            console.log(valorRetornado)
             if (valorRetornado == "ERROR") {
                 alert("Atenção! Não foi possível buscar o clima na localidade.");
                 $('#aguarde').dialog('close');
