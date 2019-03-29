@@ -5,29 +5,36 @@ $('#myModal').dialog({
     closeOnEscape: false,
     buttons: {
         "Utilizar localização": function() {
-            if ("geolocation" in navigator){ //check geolocation available 
-                //try to get user current location using getCurrentPosition() method
-                navigator.geolocation.getCurrentPosition(function(position){ 
-                    $.ajax({
-                        url: "https://nominatim.openstreetmap.org/reverse?format=json&lat="+ position.coords.latitude+"&lon="+position.coords.longitude,
-                        dataType: 'html',
-                        type: 'get',
-                        success: function(valorRetornado) {
-                            var obj = JSON.parse(valorRetornado);
-                            if (obj) {
-                                //console.log(obj['address']['road']);
-                                //console.log(obj['address']['city_district']);
-                                //console.log(obj['address']['state']);
-                                //console.log(obj['address']['country']);
-                                //console.log(obj['address']['postcode']);
-                                buscaClimaMunicipio(obj['address']['state'], obj['address']['city_district']);                           
-                            }
-                        },
+            if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)
+            ){
+                alert('Atenção! Essa funcionalidade está indisponível para moblie.\n\nPara utiliza-lá baixe o nosso APP na Play Store ou utilize um desktop.')
+                return true;
+            }
+            else {
+                if ("geolocation" in navigator){ //check geolocation available 
+                    //try to get user current location using getCurrentPosition() method
+                    navigator.geolocation.getCurrentPosition(function(position){ 
+                        $.ajax({
+                            url: "https://nominatim.openstreetmap.org/reverse?format=json&lat="+ position.coords.latitude+"&lon="+position.coords.longitude,
+                            dataType: 'html',
+                            type: 'get',
+                            success: function(valorRetornado) {
+                                var obj = JSON.parse(valorRetornado);
+                                if (obj) {
+                                    //console.log(obj['address']['road']);
+                                    //console.log(obj['address']['city_district']);
+                                    //console.log(obj['address']['state']);
+                                    //console.log(obj['address']['country']);
+                                    //console.log(obj['address']['postcode']);
+                                    buscaClimaMunicipio(obj['address']['state'], obj['address']['city_district']);                           
+                                }
+                            },
+                        });
                     });
-                });
-            }else{
-                alert("Atençao! Esse navegador não suporta geolocalização");
-                window.location.reload();
+                }else{
+                    alert("Atençao! Esse navegador não suporta geolocalização");
+                    window.location.reload();
+                }
             }
         },
         "Buscar": function() {
@@ -94,7 +101,6 @@ $('#aguarde').dialog({
 });
 
 function buscaClimaMunicipio (estado, municipio){
-    console.log('buscaClimaMunicipio()')
     $.ajax({
         url: "buscaClimaMunicipio.php",
         dataType: 'html',
