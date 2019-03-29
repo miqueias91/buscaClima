@@ -10,17 +10,17 @@ $('#myModal').dialog({
                 navigator.geolocation.getCurrentPosition(function(position){ 
                         // console.log("Found your location \nLat : "+position.coords.latitude+" \nLang :"+ position.coords.longitude);
                     $.ajax({
-                        url: "buscaClimaLocalizacao.php",
+                        url: "https://nominatim.openstreetmap.org/reverse?format=json&lat="+ position.coords.latitude+"&lon="+position.coords.longitude,
                         dataType: 'html',
-                        type: 'post',
-                        data: {
-                            'latitude': position.coords.latitude,
-                            'longitude': position.coords.longitude,
-                        },
+                        type: 'get',
                         success: function(valorRetornado) {
-                            console.log(valorRetornado);
-                            // var obj = JSON.parse(valorRetornado);
-                            // if (obj) {
+                            var obj = JSON.parse(valorRetornado);
+                            if (obj) {
+                                console.log(obj['address']['road']);
+                                console.log(obj['address']['city_district']);
+                                console.log(obj['address']['state']);
+                                console.log(obj['address']['country']);
+                                console.log(obj['address']['postcode']);
                             //     $('#resultadoTempo h2 span').html(obj['name']+' - '+obj['state']+', '+obj['country']);
                             //     $('.dadosTemperatura h1').html(obj['data']['temperature']+'ºC');
                             //     $('.dadosTemperatura h2').html(obj['data']['condition']);
@@ -35,7 +35,7 @@ $('#myModal').dialog({
 
                             //     $('#myModal').dialog('close');
                             //     $('#resultadoTempo').css('display', '');                            
-                            // }
+                            }
                         },
                     });
                 });
