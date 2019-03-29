@@ -16,11 +16,11 @@ $('#myModal').dialog({
                         success: function(valorRetornado) {
                             var obj = JSON.parse(valorRetornado);
                             if (obj) {
-                                console.log(obj['address']['road']);
-                                console.log(obj['address']['city_district']);
-                                console.log(obj['address']['state']);
-                                console.log(obj['address']['country']);
-                                console.log(obj['address']['postcode']);
+                                //console.log(obj['address']['road']);
+                                //console.log(obj['address']['city_district']);
+                                //console.log(obj['address']['state']);
+                                //console.log(obj['address']['country']);
+                                //console.log(obj['address']['postcode']);
                                 buscaClimaMunicipio(obj['address']['state'], obj['address']['city_district']);                           
                             }
                         },
@@ -95,6 +95,7 @@ $('#aguarde').dialog({
 });
 
 function buscaClimaMunicipio (estado, municipio){
+    console.log('buscaClimaMunicipio()')
     $.ajax({
         url: "buscaClimaMunicipio.php",
         dataType: 'html',
@@ -104,24 +105,32 @@ function buscaClimaMunicipio (estado, municipio){
             'municipio': municipio,
         },
         success: function(valorRetornado) {
-            var obj = JSON.parse(valorRetornado);
-            if (obj) {
-                //RETORNA O RESULTADO E IMPRIME NA TELA
-                $('#resultadoTempo h2 span').html(obj['name']+' - '+obj['state']+', '+obj['country']);
-                $('.dadosTemperatura h1').html(obj['data']['temperature']+'ºC');
-                $('.dadosTemperatura h2').html(obj['data']['condition']);
-                $('.dadosTemperatura h4 .direcao').html(obj['data']['wind_direction']);
-                $('.dadosTemperatura h4 .vento').html(obj['data']['wind_velocity']);
-                $('.dadosTemperatura h4 .umidade').html(obj['data']['humidity']);
-                $('.dadosTemperatura h4 .pressao').html(obj['data']['pressure']);
-                $('.dadosTemperatura h4 .sensacao').html(obj['data']['sensation']);
-
-                var date = new Date(obj['data']['date']);
-                $('#resultadoTempo h3 .data').html(date);
-
+            console.log(valorRetornado)
+            if (valorRetornado == "ERROR") {
+                alert("Atenção! Não foi possível buscar o clima na localidade.");
                 $('#aguarde').dialog('close');
-                $('#myModal').dialog('close');
-                $('#resultadoTempo').css('display', '');                            
+                $('#myModal').dialog('open');
+            }
+            else{                
+                var obj = JSON.parse(valorRetornado);
+                if (obj) {
+                    //RETORNA O RESULTADO E IMPRIME NA TELA
+                    $('#resultadoTempo h2 span').html(obj['name']+' - '+obj['state']+', '+obj['country']);
+                    $('.dadosTemperatura h1').html(obj['data']['temperature']+'ºC');
+                    $('.dadosTemperatura h2').html(obj['data']['condition']);
+                    $('.dadosTemperatura h4 .direcao').html(obj['data']['wind_direction']);
+                    $('.dadosTemperatura h4 .vento').html(obj['data']['wind_velocity']);
+                    $('.dadosTemperatura h4 .umidade').html(obj['data']['humidity']);
+                    $('.dadosTemperatura h4 .pressao').html(obj['data']['pressure']);
+                    $('.dadosTemperatura h4 .sensacao').html(obj['data']['sensation']);
+
+                    var date = new Date(obj['data']['date']);
+                    $('#resultadoTempo h3 .data').html(date);
+
+                    $('#aguarde').dialog('close');
+                    $('#myModal').dialog('close');
+                    $('#resultadoTempo').css('display', '');                            
+                }
             }
         },
     });
