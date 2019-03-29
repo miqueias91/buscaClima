@@ -73,7 +73,7 @@
   	<form action='./' method='post' name='form' id='form' enctype='multipart/form-data'>
 
 		<div title="Aguarde" id='aguarde' class="modal" tabindex="-1">
-			<img width="100" height="70" src="img/carregando.gif">
+			<img width="100" height="60" src="img/carregando.gif">
 			<span>Carregando</span>
 		</div>
 
