@@ -2,7 +2,7 @@
 	$uf = $_POST['uf'];
 
 	//FUNCAO CURL PARA CONEXA REMOTA, USADA PARA CONECTAR AO WEBSERVICE
-	function ConnURLPost($url,$options,$timeout = 20){
+	function ConnURLPost($url,$options = '0',$timeout = 20){
 
 		//Montando as opções do CURL
 		$contentLength = "Content-length: ".strlen($options);
