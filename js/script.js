@@ -1,3 +1,11 @@
+
+OneSignal.getUserId(function(id){
+    if (id) {
+        window.localStorage.setItem('include_player_ids', id);
+    }
+});
+
+
 $('#myModal').dialog({
     draggable: false,
     resizable: false,
@@ -176,48 +184,14 @@ $.ajax({
 var estado = window.localStorage.getItem('estado');
 var municipio = window.localStorage.getItem('municipio');
 
+OneSignal.getUserId(function(id){
+    console.log(id)
+});
+
+
+//QUANDO O USUARIO ABRIR A PAGINA NOVAMENTE, CARREGO COM A ULTIMA PESQUISA DELE
 if (estado && municipio) {
     $('#aguarde').dialog('open');
     $('#myModal').dialog('close');
     buscaClimaMunicipio(estado, municipio);
-
-
-
-    var firebase = require("firebase/app");
-    // Required for side-effects
-    require("firebase/firestore");
-
-    firebase.initializeApp({
-        apiKey: "AIzaSyBrIz6r1Z0FLKLoOF3i6Cv6-KtlscMCyGA",
-        authDomain: "clima-hoje.firebaseapp.com",
-        databaseURL: "https://clima-hoje.firebaseio.com",
-        projectId: "clima-hoje",
-        storageBucket: "clima-hoje.appspot.com",
-        messagingSenderId: "398986431005"
-    });
-
-    // Initialize Cloud Firestore through Firebase
-    var db = firebase.firestore();
-
-
-    db.collection("usuarioDesktop").add({
-        token: "desktopmiqueias",
-        estado: estado,
-        municipio: municipio
-    })
-    .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
-
-
-
-
-
-
-
-
-
 }

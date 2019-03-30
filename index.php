@@ -68,12 +68,12 @@
 
 	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 	<script>
-	  /*var OneSignal = window.OneSignal || [];
+	  var OneSignal = window.OneSignal || [];
 	  OneSignal.push(function() {
 	    OneSignal.init({
 	      appId: "a1baa402-431f-4103-9f5e-9b8a3daa80ee",
 	    });
-	  });*/
+	  });
 	</script>
 
 
