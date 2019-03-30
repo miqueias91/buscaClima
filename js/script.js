@@ -51,9 +51,15 @@ $('#myModal').dialog({
                     var retornoPesquisa = $('#tags').val().split(" - ");
                     $('#aguarde').dialog('open');
                     $('#myModal').dialog('close');
+                    window.localStorage.setItem('estado', retornoPesquisa[1]);
+                    window.localStorage.setItem('municipio', retornoPesquisa[0]);
+
                     buscaClimaMunicipio(retornoPesquisa[1], retornoPesquisa[0]);
                     return true;
                 } else {
+                    window.localStorage.setItem('estado', $('#estado').val());
+                    window.localStorage.setItem('municipio', $('#municipio').val());
+
                     $('#aguarde').dialog('open');
                     $('#myModal').dialog('close');
                     buscaClimaMunicipio($('#estado').val(), $('#municipio').val());
@@ -99,6 +105,10 @@ $('#localidadeMunicipio').change(function(){
 
 $('#novaBusca').click(function(){
     $('#aguarde').dialog('open');
+
+    //APAGO OQ ARMAZENEI NO NAVEGADOR
+    window.localStorage.removeItem('estado');
+    window.localStorage.removeItem('municipio');
     window.location.reload();
 });
 
@@ -161,3 +171,15 @@ $.ajax({
         });
     },
 });
+
+//BUSCO OQ ARMAZENEI NO NAVEGADOR
+var estado = window.localStorage.getItem('estado');
+var municipio = window.localStorage.getItem('municipio');
+
+if (estado && municipio) {
+    $('#aguarde').dialog('open');
+    $('#myModal').dialog('close');
+    buscaClimaMunicipio(estado, municipio);
+} else {
+
+}
