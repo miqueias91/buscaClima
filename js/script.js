@@ -34,6 +34,8 @@ $('#myModal').dialog({
                                     //console.log(obj['address']['state']);
                                     //console.log(obj['address']['country']);
                                     //console.log(obj['address']['postcode']);
+                                    window.localStorage.setItem('estado', obj['address']['state']);
+                                    window.localStorage.setItem('municipio', obj['address']['city_district']);
                                     buscaClimaMunicipio(obj['address']['state'], obj['address']['city_district']);                           
                                 }
                             },
