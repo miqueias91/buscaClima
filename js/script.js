@@ -38,19 +38,27 @@ $('#myModal').dialog({
             }
         },
         "Buscar": function() {
-            if ($('#localidadeEstado').val() == '') {
-                alert('Atenção! Selecione um estado.');
+            if ($('#localidadeEstado').val() == '' && $('#tags').val() == '') {
+                alert('Atenção! Selecione um estado ou pesquise o nome de um município.');
                 return false;
             }         
-            else if ($('#localidadeMunicipio').val() == '') {
-                alert('Atenção! Selecione um município.');
+            else if ($('#localidadeMunicipio').val() == '' && $('#tags').val() == '') {
+                alert('Atenção! Selecione um município ou pesquise o nome de um município.');
                 return false;
             }
-            else{                    
-                $('#aguarde').dialog('open');
-                $('#myModal').dialog('close');
-                buscaClimaMunicipio($('#estado').val(), $('#municipio').val());
-                return true;
+            else{
+                if ($('#tags').val() != '') {
+                    var retornoPesquisa = $('#tags').val().split(" - ");
+                    $('#aguarde').dialog('open');
+                    $('#myModal').dialog('close');
+                    buscaClimaMunicipio(retornoPesquisa[1], retornoPesquisa[0]);
+                    return true;
+                } else {
+                    $('#aguarde').dialog('open');
+                    $('#myModal').dialog('close');
+                    buscaClimaMunicipio($('#estado').val(), $('#municipio').val());
+                    return true;                   
+                }
             }
         },
     },
@@ -139,3 +147,17 @@ function buscaClimaMunicipio (estado, municipio){
         },
     });
 }
+
+//BUSCO OS MUNICIPIOS NA MEDIDA QUE O USUARIO DIGITAR
+var retornoPesquisa = '';
+$.ajax({
+    url: "procuraMunicipioDigitado.php",
+    dataType: 'html',
+    type: 'post',
+    success: function(valorRetornado) {
+        var retornoPesquisa = valorRetornado.split(",");
+        $( "#tags" ).autocomplete({
+          source: retornoPesquisa
+        });
+    },
+});

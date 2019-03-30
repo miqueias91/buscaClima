@@ -100,7 +100,13 @@
 			    <select class="form-control" id="localidadeMunicipio" name="localidadeMunicipio">
 			      <option value="">Município</option>
 			    </select>
-			</div>	  
+			</div>	
+			<div class="text-center">
+				<p>Ou</p>				
+			</div>
+			<div class="form-group ui-widget"  style="margin-bottom: 0;">
+			  <input class="form-control" id="tags" placeholder="Pesquise um município...">
+			</div>  
 		</div>
 
 		<div class="container">
