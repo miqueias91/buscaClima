@@ -66,6 +66,16 @@
     <!-- Optional Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+	<script>
+	  /*var OneSignal = window.OneSignal || [];
+	  OneSignal.push(function() {
+	    OneSignal.init({
+	      appId: "a1baa402-431f-4103-9f5e-9b8a3daa80ee",
+	    });
+	  });*/
+	</script>
+
 
     <title>Climahoje - Veja como está o clima hoje</title>
   </head>
@@ -136,6 +146,8 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-ui.js"></script>
-    <script src="js/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script  type="module" src="js/script.js"></script>
   </body>
 </html>
