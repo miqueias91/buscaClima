@@ -1,4 +1,4 @@
-# buscaClima
+# climahoje
 
 # Projeto utilizando a API do IBGE para buscar os estados e os municípios e a API do Climatempo para busca os dados do clima.
 

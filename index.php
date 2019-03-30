@@ -67,7 +67,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
 
-    <title>Buscaclima - Veja como está o tempo hoje</title>
+    <title>Climahoje - Veja como está o clima hoje</title>
   </head>
   <body>
   	<form action='./' method='post' name='form' id='form' enctype='multipart/form-data'>
