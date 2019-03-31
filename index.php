@@ -1,50 +1,3 @@
-<?php
-	//FUNCAO CURL PARA CONEXA REMOTA, USADA PARA CONECTAR AO WEBSERVICE
-	function ConnURLPost($url,$options = '0',$timeout = 20){
-
-		//Montando as opções do CURL
-		$contentLength = "Content-length: ".strlen($options);
-		$methodOptions = Array(
-			CURLOPT_POST => true,
-			CURLOPT_POSTFIELDS => $options,
-		);
-	
-		$options = Array(
-			CURLOPT_HTTPHEADER => Array(
-					"Content-Type: application/x-www-form-urlencoded; charset=UTF-8",
-					$contentLength
-			),
-			CURLOPT_URL => $url,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_HEADER => false,
-			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_CONNECTTIMEOUT => $timeout,
-			CURLOPT_TIMEOUT => $timeout
-		);
-		$options = ($options + $methodOptions);
-	
-		//INICIA CONEXAO
-		$curl = curl_init();
-		curl_setopt_array($curl, $options);
-		$resp  = curl_exec($curl);
-		$info  = curl_getinfo($curl);
-		$error = curl_errno($curl);
-		$errorMessage = curl_error($curl);
-		if($error){
-			return false ;
-		}
-		//FECHA CONEXAO
-		curl_close($curl);
-	
-		return $resp;
-	}
-
-	//BUSCA OS ESTADOS DO BRASIL
-	$url0 = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-	$result0 = ConnURLPost($url0);
-	$resultadoEstados = json_decode($result0);
-?>
-
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -56,6 +9,7 @@
     <meta name="keywords" content="Clima, tempo, meterologia, localidade, chuva, sol, vento, nublado">
     <meta content="pt-br, pt, en" http-equiv="Content-Language">
     <meta name="revised" content="2018-03-25">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -93,18 +47,36 @@
 				<input type="hidden" id="estado" name="estado" value="">
 				<input type="hidden" id="municipio" name="municipio" value="">
 			    
-			    <select class="form-control" id="localidadeEstado" name="localidadeEstado">
-			      <option value="">Estado</option>
-			      <?php
-					if ($resultadoEstados) {
-						foreach ($resultadoEstados as $key => $row) {
-					?>
-						<option sigla="<?=$row->sigla?>" value="<?=$row->id?>"><?=$row->nome." - ".$row->sigla?></option>
-					<?php
-						}
-					}
-			      ?>
-			    </select>
+				<select class="form-control" id="localidadeEstado" name="localidadeEstado">
+					<option value="">Estado</option>
+					<option sigla="AC" value="12">Acre - AC</option>
+					<option sigla="AL" value="27">Alagoas - AL</option>
+					<option sigla="AM" value="13">Amazonas - AM</option>
+					<option sigla="AP" value="16">Amapá - AP</option>
+					<option sigla="BA" value="29">Bahia - BA</option>
+					<option sigla="CE" value="23">Ceará - CE</option>
+					<option sigla="DF" value="53">Distrito Federal - DF</option>
+					<option sigla="ES" value="32">Espírito Santo - ES</option>
+					<option sigla="GO" value="52">Goiás - GO</option>
+					<option sigla="MA" value="21">Maranhão - MA</option>
+					<option sigla="MT" value="51">Mato Grosso - MT</option>
+					<option sigla="MS" value="50">Mato Grosso do Sul - MS</option>
+					<option sigla="MG" value="31">Minas Gerais - MG</option>
+					<option sigla="PA" value="15">Pará - PA</option>
+					<option sigla="PB" value="25">Paraíba - PB</option>
+					<option sigla="PR" value="41">Paraná - PR</option>
+					<option sigla="PI" value="22">Piauí - PI</option>
+					<option sigla="PE" value="26">Pernambuco - PE</option>
+					<option sigla="RJ" value="33">Rio de Janeiro - RJ</option>
+					<option sigla="RN" value="24">Rio Grande do Norte - RN</option>
+					<option sigla="RS" value="43">Rio Grande do Sul - RS</option>
+					<option sigla="RO" value="11">Rondônia - RO</option>
+					<option sigla="RR" value="14">Roraima - RR</option>
+					<option sigla="SP" value="35">São Paulo - SP</option>
+					<option sigla="SC" value="42">Santa Catarina - SC</option>
+					<option sigla="SE" value="28">Sergipe - SE</option>
+					<option sigla="TO" value="17">Tocantins - TO</option>
+				</select>
 			</div>	
 			<div class="form-group">
 			    <select class="form-control" id="localidadeMunicipio" name="localidadeMunicipio">

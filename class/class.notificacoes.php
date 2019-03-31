@@ -27,7 +27,7 @@
               municipio = :municipio,
               estado = :estado";
           $pdo = Conexao::getInstance()->prepare($sql);
-          $pdo->bindValue(":token", $token, PDO::PARAM_INT);
+          $pdo->bindValue(":token", $token, PDO::PARAM_STR);
           $pdo->bindValue(":municipio", $municipio, PDO::PARAM_STR);
           $pdo->bindValue(":estado", $estado, PDO::PARAM_STR);
       

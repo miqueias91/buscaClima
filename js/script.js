@@ -88,7 +88,8 @@ $('#localidadeEstado').change(function(){
             dataType: 'html',
             type: 'post',
             data: {
-                'uf': parseInt($(this).val()),
+                'id': parseInt($(this).val()),
+                'uf': $('option:selected', this).attr('sigla'),
             },
             success: function(a) {
                 $('#localidadeMunicipio').html("<option value=''>Município</option>\n"+a);
