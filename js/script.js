@@ -190,10 +190,13 @@ OneSignal.getUserId(function(id){
     console.log(id)
 });
 
-
 //QUANDO O USUARIO ABRIR A PAGINA NOVAMENTE, CARREGO COM A ULTIMA PESQUISA DELE
 if (estado && municipio) {
     $('#aguarde').dialog('open');
     $('#myModal').dialog('close');
     buscaClimaMunicipio(estado, municipio);
 }
+
+$('html, body').animate({
+    scrollTop: 320
+}, 1600);
