@@ -1,11 +1,12 @@
-
+//SALVA O IDONESIGNAL NO NAVEGADOR
 OneSignal.getUserId(function(id){
     if (id) {
-        window.localStorage.setItem('include_player_ids', id);
+        window.localStorage.setItem('token', id);
     }
 });
 
 
+//ESTRUTURA DO MODAL DE BUSCA
 $('#myModal').dialog({
     draggable: false,
     resizable: false,
@@ -22,6 +23,8 @@ $('#myModal').dialog({
                 if ("geolocation" in navigator){ //check geolocation available 
                     //try to get user current location using getCurrentPosition() method
                     navigator.geolocation.getCurrentPosition(function(position){ 
+                    $('#aguarde').dialog('open');
+                    $('#myModal').dialog('close');
                         $.ajax({
                             url: "https://nominatim.openstreetmap.org/reverse?format=json&lat="+ position.coords.latitude+"&lon="+position.coords.longitude,
                             dataType: 'html',
@@ -29,11 +32,6 @@ $('#myModal').dialog({
                             success: function(valorRetornado) {
                                 var obj = JSON.parse(valorRetornado);
                                 if (obj) {
-                                    //console.log(obj['address']['road']);
-                                    //console.log(obj['address']['city_district']);
-                                    //console.log(obj['address']['state']);
-                                    //console.log(obj['address']['country']);
-                                    //console.log(obj['address']['postcode']);
                                     window.localStorage.setItem('estado', obj['address']['state']);
                                     window.localStorage.setItem('municipio', obj['address']['city_district']);
                                     buscaClimaMunicipio(obj['address']['state'], obj['address']['city_district']);                           
@@ -115,10 +113,11 @@ $('#localidadeMunicipio').change(function(){
 
 $('#novaBusca').click(function(){
     $('#aguarde').dialog('open');
-
+    $('#myModal').dialog('close');
     //APAGO OQ ARMAZENEI NO NAVEGADOR
     window.localStorage.removeItem('estado');
     window.localStorage.removeItem('municipio');
+    window.localStorage.removeItem('token');
     window.location.reload();
 });
 
@@ -146,6 +145,7 @@ function buscaClimaMunicipio (estado, municipio){
             else{                
                 var obj = JSON.parse(valorRetornado);
                 if (obj) {
+                    atualizaNotificacoes(token, estado, municipio)
                     //RETORNA O RESULTADO E IMPRIME NA TELA
                     $('#resultadoTempo h2 span').html(obj['name']+' - '+obj['state']+', '+obj['country']);
                     $('.dadosTemperatura h1').html(obj['data']['temperature']+'ºC');
@@ -185,10 +185,7 @@ $.ajax({
 //BUSCO OQ ARMAZENEI NO NAVEGADOR
 var estado = window.localStorage.getItem('estado');
 var municipio = window.localStorage.getItem('municipio');
-
-OneSignal.getUserId(function(id){
-    console.log(id)
-});
+var token = window.localStorage.getItem('token');
 
 //QUANDO O USUARIO ABRIR A PAGINA NOVAMENTE, CARREGO COM A ULTIMA PESQUISA DELE
 if (estado && municipio) {
@@ -200,3 +197,21 @@ if (estado && municipio) {
 $('html, body').animate({
     scrollTop: 320
 }, 1600);
+
+function atualizaNotificacoes(token, estado, municipio) {
+    if (token) {
+        $.ajax({
+            url: "atualizaNotificacoes.php",
+            dataType: 'html',
+            type: 'post',
+            data: {
+                'token': token,
+                'estado': estado,
+                'municipio': municipio,
+            },
+            success: function(valorRetornado) {
+              console.log(valorRetornado)
+            },
+        });        
+    }
+}

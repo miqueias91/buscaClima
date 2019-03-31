@@ -15,6 +15,8 @@
 		$name = $_POST['municipio'];
 		$state = $_POST['estado'];
 		$name = str_replace('_', '%20', $name);
+		$name = str_replace(' ', '%20', $name);
+
 		if (strlen($state) > 2) {
 			$br = new estadosBrasileiros();
 			$retorno_estado = $br->buscaEstadosBrasileiros($state);
@@ -22,7 +24,6 @@
 		}
 
 		$token = 'db0b630c9cfd789d97c89c45e8e52068';
-
 		//BUSCA ID DA LOCALIDADE
 		$url0 = "http://apiadvisor.climatempo.com.br/api/v1/locale/city?name=$name&state=$state&token=$token";
 		$result0 = CURL($url0);
