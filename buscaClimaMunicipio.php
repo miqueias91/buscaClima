@@ -1,6 +1,6 @@
 <?php
 	$resultado = "ERROR";
-	if (isset($_POST['municipio']) && isset($_POST['estado'])) {
+	if ((isset($_POST['municipio']) && isset($_POST['estado'])) && ($_POST['municipio'] != 'undefined' && $_POST['estado'] != 'undefined')) {
 		include_once 'class/class.estadosBrasileiros.php';
 
 		//FUNCAO CURL PARA CONEXA REMOTA, USADA PARA CONECTAR AO WEBSERVICE

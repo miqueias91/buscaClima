@@ -11,7 +11,7 @@
 
     public function buscaMunicipios($uf = null, $pesquisa = null) {
       $filtro = isset($uf) ? "AND Uf = :uf " : "";
-      //$filtro = isset($indicacao) ? "AND indicacao LIKE :indicacao " : "";
+      $filtro = isset($pesquisa) ? "AND Nome LIKE :pesquisa " : "";
       try {
           $sql = "SELECT Id, Nome, Uf
                   FROM municipio
@@ -23,9 +23,9 @@
             if (isset($uf)) {
               $pdo->bindValue(':uf', $uf, PDO::PARAM_STR);             
             }  
-            /*if (isset($indicacao)) {
-              $pdo->bindValue(':indicacao', '%'.$indicacao.'%', PDO::PARAM_STR);             
-            } */          
+            if (isset($pesquisa)) {
+              $pdo->bindValue(':pesquisa', '%'.$pesquisa.'%', PDO::PARAM_STR);             
+            }        
               $pdo->execute();
               return $pdo->fetchAll(PDO::FETCH_BOTH);
           }

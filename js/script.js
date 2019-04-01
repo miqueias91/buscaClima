@@ -170,18 +170,35 @@ function buscaClimaMunicipio (estado, municipio){
 }
 
 //BUSCO OS MUNICIPIOS NA MEDIDA QUE O USUARIO DIGITAR
-var retornoPesquisa = '';
-$.ajax({
-    url: "procuraMunicipioDigitado.php",
-    dataType: 'html',
-    type: 'post',
-    success: function(valorRetornado) {
-        var retornoPesquisa = valorRetornado.split(",");
-        $( "#tags" ).autocomplete({
-          source: retornoPesquisa
-        });
+$('#tags').autocomplete({
+    minLength: 1,
+    autoFocus: true,
+    delay: 300,
+    position: {
+        my: 'left top',
     },
+    appendTo: '#tag',
+    source: function(request, response){
+        $.ajax({
+            url: 'procuraMunicipioDigitado.php',
+            type: 'get',
+            dataType: 'html',
+            data: {
+                'termo': request.term
+            }
+        }).done(function(data){
+            if(data.length > 0){                            
+                data = data.split(',');
+                response( $.each(data, function(key, item){
+                    return({
+                        label: item
+                    });
+                }));
+            }
+        });
+    }
 });
+            
 
 //BUSCO OQ ARMAZENEI NO NAVEGADOR
 var estado = window.localStorage.getItem('estado');
