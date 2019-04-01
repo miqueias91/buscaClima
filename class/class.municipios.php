@@ -11,7 +11,7 @@
 
     public function buscaMunicipios($uf = null, $pesquisa = null) {
       $filtro = isset($uf) ? "AND Uf = :uf " : "";
-      $filtro = isset($pesquisa) ? "AND Nome LIKE :pesquisa " : "";
+      $filtro = isset($pesquisa) ? "AND concat_ws(' - ',Nome,Uf) LIKE :pesquisa " : "";
       try {
           $sql = "SELECT Id, Nome, Uf
                   FROM municipio
