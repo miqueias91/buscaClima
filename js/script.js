@@ -5,7 +5,6 @@ OneSignal.getUserId(function(id){
     }
 });
 
-
 //ESTRUTURA DO MODAL DE BUSCA
 $('#myModal').dialog({
     draggable: false,
@@ -92,6 +91,7 @@ $('#localidadeEstado').change(function(){
                 'uf': $('option:selected', this).attr('sigla'),
             },
             success: function(a) {
+                console.log(a)
                 $('#localidadeMunicipio').html("<option value=''>Município</option>\n"+a);
                 $('#aguarde').dialog('close');
                 $('#myModal').dialog('open');
@@ -118,7 +118,7 @@ $('#novaBusca').click(function(){
     //APAGO OQ ARMAZENEI NO NAVEGADOR
     window.localStorage.removeItem('estado');
     window.localStorage.removeItem('municipio');
-    window.localStorage.removeItem('token');
+    //window.localStorage.removeItem('token');
     window.location.reload();
 });
 
@@ -129,6 +129,8 @@ $('#aguarde').dialog({
 });
 
 function buscaClimaMunicipio (estado, municipio){
+    var token = window.localStorage.getItem('token');
+
     $.ajax({
         url: "buscaClimaMunicipio.php",
         dataType: 'html',
@@ -146,6 +148,8 @@ function buscaClimaMunicipio (estado, municipio){
             else{                
                 var obj = JSON.parse(valorRetornado);
                 if (obj) {
+                    console.log(token)
+                    console.log(obj)
                     atualizaNotificacoes(token, estado, municipio)
                     //RETORNA O RESULTADO E IMPRIME NA TELA
                     $('#resultadoTempo h2 span').html(obj['name']+' - '+obj['state']+', '+obj['country']);

@@ -3,10 +3,9 @@
 	include_once "class/class.municipios.php";
 
 	$mun = new Municipios();
-	
-	$uf = $_POST['uf'];
-	
+		
 	$resultadoMunicipios = $mun->buscaMunicipios($uf);
+	print_r($resultadoMunicipios);
 	if ($resultadoMunicipios) {
 		foreach ($resultadoMunicipios as $key => $row) {
 			$nome = str_replace("'", "%27", $row['Nome']);

@@ -10,16 +10,19 @@
     }
 
     public function buscaMunicipios($uf = null, $pesquisa = null) {
-      $filtro = isset($uf) ? "AND Uf = :uf " : "";
-      $filtro = isset($pesquisa) ? "AND concat_ws(' - ',Nome,Uf) LIKE :pesquisa " : "";
+      $filtro = "";
+      $filtro .= isset($uf) ? " AND Uf = :uf " : "";
+      $filtro .= isset($pesquisa) ? " AND concat_ws(' - ',Nome,Uf) LIKE :pesquisa " : "";
       try {
           $sql = "SELECT Id, Nome, Uf
                   FROM municipio
                   WHERE Id > :Id
                   $filtro
                 ";
-              $pdo = Conexao::getInstance()->prepare($sql);
-            $pdo->bindValue(':Id', 0, PDO::PARAM_INT);             
+            print_r($sql);
+            $pdo = Conexao::getInstance()->prepare($sql);
+            $pdo->bindValue(':Id', 0, PDO::PARAM_INT);
+
             if (isset($uf)) {
               $pdo->bindValue(':uf', $uf, PDO::PARAM_STR);             
             }  
