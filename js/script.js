@@ -148,8 +148,6 @@ function buscaClimaMunicipio (estado, municipio){
             else{                
                 var obj = JSON.parse(valorRetornado);
                 if (obj) {
-                    console.log(token)
-                    console.log(obj)
                     atualizaNotificacoes(token, estado, municipio)
                     //RETORNA O RESULTADO E IMPRIME NA TELA
                     $('#resultadoTempo h2 span').html(obj['name']+' - '+obj['state']+', '+obj['country']);
