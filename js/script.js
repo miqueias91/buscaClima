@@ -78,23 +78,26 @@ $('#myModal').dialog({
 });
        
 $('#localidadeEstado').change(function(){
-    if ($(this).val() != '') {
+    if ($(this).val() !== '') {
         $('#estado').val($('option:selected', this).attr('sigla'));
         $('#myModal').dialog('close');
         $('#aguarde').dialog('open');
         $.ajax({
             url: "buscaMunicipio.php",
             dataType: 'html',
-            type: 'post',
+            type: 'GET',
             data: {
-                'id': parseInt($(this).val()),
                 'uf': $('option:selected', this).attr('sigla'),
             },
             success: function(a) {
-                console.log(a)
-                $('#localidadeMunicipio').html("<option value=''>Município</option>\n"+a);
-                $('#aguarde').dialog('close');
-                $('#myModal').dialog('open');
+                if (a === 'ERROR') {
+                    alert('Atenção! Selecione um estado.');
+                }
+                else{
+                    $('#localidadeMunicipio').html("<option value=''>Município</option>\n"+a);
+                    $('#aguarde').dialog('close');
+                    $('#myModal').dialog('open');                    
+                }
             },
         });
     }

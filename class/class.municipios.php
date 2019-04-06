@@ -19,7 +19,6 @@
                   WHERE Id > :Id
                   $filtro
                 ";
-            print_r($sql);
             $pdo = Conexao::getInstance()->prepare($sql);
             $pdo->bindValue(':Id', 0, PDO::PARAM_INT);
 
