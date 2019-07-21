@@ -114,13 +114,28 @@
 	</form>
 	<footer class="text-center footer">	 
 	 	<div class="informacoes">
-	 		<a href="./">Buscar Clima</a> | 
-	 		<a href="https://play.google.com/store/apps/details?id=com.phonegap.climahojemobile" target="_blank">Google Play</a> | 
-	 		<a href="./policy.html" target="_blank">Politica de Privacidade</a> | 
-	        <a href="https://www.facebook.com/miqueiasmatiascaetano" target="_blank">Facebook</a> | <a href="https://www.linkedin.com/in/miqueias-matias-caetano-21902068/" target="_blank">LinkedIn</i></a>
-	        <br>
-	        <a href="https://miqueiasmcaetano.000webhostapp.com/" target="_blank">© 2019 Desenvolvido por Miqueias Matias Caetano - Todos os direitos reservados
-	        </a>	 		
+	 		<div class="container">	 			
+		 		<div class="row">
+		 			<div class="col-md-3">
+		 				<a href="./">Buscar Clima</a>
+		 			</div>
+		 			<div class="col-md-3">
+		 				<a href="https://play.google.com/store/apps/details?id=com.phonegap.climahojemobile" target="_blank">Google Play</a>
+		 			</div>
+		 			<div class="col-md-3">
+		 				<a href="./policy.html" target="_blank">Politica de Privacidade</a>
+		 			</div>
+		 			<div class="col-md-3">
+		        		<a href="https://www.linkedin.com/in/miqueias-matias-caetano-21902068/" target="_blank">LinkedIn</i></a>
+		 			</div>
+		 			
+		 		</div>
+		 		<div class="row">
+		 			<div class="col-md-12">
+		 				<a href="https://miqueiasmcaetano.000webhostapp.com/" target="_blank">© 2019 Desenvolvido por Miqueias Matias Caetano - Todos os direitos reservados</a>
+		        	</div>	 			
+		 		</div>	 		
+	 		</div>
 	 	</div>
     </footer>
 

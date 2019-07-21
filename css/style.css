@@ -53,6 +53,7 @@ body {
 .section_policy .container {
 	margin-top: 20px;
 	display: block;
+	height: auto;
 }
 .section_policy h1, h2 {
 	text-align: center;
@@ -75,6 +76,11 @@ body {
 }
 footer {
 	z-index: 102!important;
+}
+footer .container {
+	display: block;
+	height: auto;
+	width: auto;
 }
 .informacoes {
 	padding: 10px 0 10px 0;

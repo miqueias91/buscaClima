@@ -217,9 +217,9 @@ if (estado && municipio) {
     buscaClimaMunicipio(estado, municipio);
 }
 
-$('html, body').animate({
+/*$('html, body').animate({
     scrollTop: 320
-}, 1600);
+}, 1600);*/
 
 function atualizaNotificacoes(token, estado, municipio) {
     if (token) {
