@@ -8,7 +8,7 @@
     <meta name="author" content="Miqueias Matias Caetano">
     <meta name="keywords" content="Clima, tempo, meterologia, localidade, chuva, sol, vento, nublado">
     <meta content="pt-br, pt, en" http-equiv="Content-Language">
-    <meta name="revised" content="2018-03-25">
+    <meta name="revised" content="2019-07-20">
     <meta http-equiv="Content-Security-Policy" content="default-src *; img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
 
     <!-- Bootstrap CSS -->
@@ -31,7 +31,7 @@
 	</script>
 
 
-    <title>Climahoje - Veja como está o clima hoje</title>
+    <title>Clima Hoje - Veja como está o clima hoje</title>
   </head>
   <body>
   	<form action='./' method='post' name='form' id='form' enctype='multipart/form-data'>
@@ -112,6 +112,17 @@
 			</div>			
 		</div>
 	</form>
+	<footer class="text-center footer">	 
+	 	<div class="informacoes">
+	 		<a href="./">Buscar Clima</a> | 
+	 		<a href="https://play.google.com/store/apps/details?id=com.phonegap.climahojemobile" target="_blank">Google Play</a> | 
+	 		<a href="./policy.html" target="_blank">Politica de Privacidade</a> | 
+	        <a href="https://www.facebook.com/miqueiasmatiascaetano" target="_blank">Facebook</a> | <a href="https://www.linkedin.com/in/miqueias-matias-caetano-21902068/" target="_blank">LinkedIn</i></a>
+	        <br>
+	        <a href="https://miqueiasmcaetano.000webhostapp.com/" target="_blank">© 2019 Desenvolvido por Miqueias Matias Caetano - Todos os direitos reservados
+	        </a>	 		
+	 	</div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -120,6 +131,6 @@
     <script src="js/jquery-ui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
-    <script  type="module" src="js/script.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
