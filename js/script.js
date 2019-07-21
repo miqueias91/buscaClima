@@ -137,7 +137,7 @@ function buscaClimaMunicipio (estado, municipio){
     $.ajax({
         url: "buscaClimaMunicipio.php",
         dataType: 'html',
-        type: 'post',
+        type: 'get',
         data: {
             'estado': estado,
             'municipio': municipio,
