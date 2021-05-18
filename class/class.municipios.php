@@ -1,38 +1,20 @@
 <?php
-  header("Access-Control-Allow-Origin: *");
 
-  class Municipios extends Conexao {
-    public static $instance;
-    public function __construct(){}
-    public static function getInstance() {
-      self::$instance = new Municipios();
-      return self::$instance;
+  class Municipios {
+
+    function __construct(){}
+
+    public function CURL($url){
+      $ch     =   curl_init();
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $result = (curl_exec($ch));
+      return $result;
     }
 
-    public function buscaMunicipios($uf = null, $pesquisa = null) {
-      $filtro = "";
-      $filtro .= isset($uf) ? " AND Uf = :uf " : "";
-      $filtro .= isset($pesquisa) ? " AND concat_ws(' - ',Nome,Uf) LIKE :pesquisa " : "";
-      try {
-          $sql = "SELECT Id, Nome, Uf
-                  FROM municipio
-                  WHERE Id > :Id
-                  $filtro
-                ";
-            $pdo = Conexao::getInstance()->prepare($sql);
-            $pdo->bindValue(':Id', 0, PDO::PARAM_INT);
-
-            if (isset($uf)) {
-              $pdo->bindValue(':uf', $uf, PDO::PARAM_STR);             
-            }  
-            if (isset($pesquisa)) {
-              $pdo->bindValue(':pesquisa', '%'.$pesquisa.'%', PDO::PARAM_STR);             
-            }        
-              $pdo->execute();
-              return $pdo->fetchAll(PDO::FETCH_BOTH);
-          }
-          catch (Exception $e) {
-              echo "<br>".$e->getMessage();
-          }
+    public function buscaMunicipios($uf = null) {
+      $url0 = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/$uf/distritos";
+      $result0 = $this->CURL($url0);
+      return $result0;
     }  
   }

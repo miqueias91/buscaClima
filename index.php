@@ -20,17 +20,6 @@
     <!-- Optional Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
-	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-	<script>
-	  var OneSignal = window.OneSignal || [];
-	  OneSignal.push(function() {
-	    OneSignal.init({
-	      appId: "a1baa402-431f-4103-9f5e-9b8a3daa80ee",
-	    });
-	  });
-	</script>
-
-
     <title>Clima Hoje - Veja como está o clima hoje</title>
   </head>
   <body>
@@ -82,13 +71,7 @@
 			    <select class="form-control" id="localidadeMunicipio" name="localidadeMunicipio">
 			      <option value="">Município</option>
 			    </select>
-			</div>	
-			<div class="text-center">
-				<p>Ou</p>				
-			</div>
-			<div class="form-group ui-widget"  style="margin-bottom: 0;">
-			  <input class="form-control" id="tags" placeholder="Pesquise um município...">
-			</div>  
+			</div>	  
 		</div>
 
 		<div class="container">
@@ -132,7 +115,7 @@
 		 		</div>
 		 		<div class="row">
 		 			<div class="col-md-12">
-		 				<a href="https://miqueiasmcaetano.000webhostapp.com/" target="_blank">© 2019 Desenvolvido por Miqueias Matias Caetano - Todos os direitos reservados</a>
+		 				<a href="https://www.innovatesoft.com.br/" target="_blank">© 2019 Desenvolvido por Miqueias Matias Caetano - Todos os direitos reservados</a>
 		        	</div>	 			
 		 		</div>	 		
 	 		</div>
@@ -144,8 +127,6 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-ui.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

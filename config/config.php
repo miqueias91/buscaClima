@@ -1,15 +1,6 @@
 <?php
-    // header ('Content-type: text/html; charset=ISO-8859-1');
-    // header("Content-Type: application/json; charset=UTF-8");
-
-  // $base       ="/home/thewebbestads/public_html/app/teindico";
-  // $base_http     = "/home/storage/f/87/f0/thewebbestads/public_html/app/teindico";
-
-  $base       = "C:/xampp/htdocs/climaHoje";
-  $base_http    = "http://localhost/climaHoje";
-
-  //$base       = "/var/www/teindico-admin";
-  //$base_http    = "http://localhost/teindico-admin";
+  $base       = "/var/www/site-climaHoje";
+  $base_http    = "http://www.localhost/site-climaHoje/";
 
   $PATH_BASE_HTTP = $base_http;
   $CLASS_PATH    = $base."/class" ;
@@ -22,12 +13,6 @@
   $IMAGE_PATH    = $base_http."/img" ;
 
 
-  include_once( "$base/class/class.conexao.php" );
-  /*****************************************
-   *       Conexao com o db principal      *
-   *****************************************/   
-  $conexao = Conexao::getInstance();
-
   if(empty($extraidos)){
     extract($_POST);
     extract($_GET);
@@ -35,3 +20,6 @@
     if(isset($_SESSION))extract($_SESSION);
     $extraidos = 1;
   }
+
+
+  $tokenClimaTempo = 'db0b630c9cfd789d97c89c45e8e52068';
